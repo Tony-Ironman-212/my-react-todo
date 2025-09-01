@@ -7,6 +7,7 @@ import Input from '@/components/small_components/Input.jsx';
 function FilteredList(props) {
   const {
     taskItems,
+    setTaskItems,
     mode,
     setMode,
     searchInput,

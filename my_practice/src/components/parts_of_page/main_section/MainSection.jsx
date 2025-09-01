@@ -25,6 +25,7 @@ function MainSection() {
         {/* filteredList */}
         <FilteredList
           taskItems={taskItems}
+          setTaskItems={setTaskItems}
           mode={mode}
           setMode={setMode}
           searchInput={searchInput}
