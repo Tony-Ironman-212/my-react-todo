@@ -11,11 +11,18 @@ function App() {
   const [taskInput, setTaskInput] = useState('');
   const [searchInput, setSearchInput] = useState('');
   const [taskItems, setTaskItems] = useState([
-    { task: 'VD: Learn React', done: false },
-    { task: 'VD: Study Nodejs', done: false },
+    { task: 'Ex: Learn React', done: false },
+    { task: 'Ex: Study Nodejs', done: false },
   ]);
   const [active, setActive] = useState('all'); // all, not_done, completed
   const [mode, setMode] = useState('add'); // add, search
+
+  // tạo buttons để map ra list button
+  const buttons = [
+    { label: 'All Task', value: 'all' },
+    { label: 'Not Done', value: 'not_done' },
+    { label: 'Completed', value: 'completed' },
+  ];
 
   // lọc task theo trạng thái active (all or not done or completed)
   const filteredTasks = taskItems.filter((taskItem) => {
@@ -91,24 +98,15 @@ function App() {
               Things To Do
             </h1>
             <div>
-              <Button
-                isActive={active === 'all'}
-                onClick={() => setActive('all')}
-              >
-                All Task
-              </Button>
-              <Button
-                isActive={active === 'not_done'}
-                onClick={() => setActive('not_done')}
-              >
-                Not Done
-              </Button>
-              <Button
-                isActive={active === 'completed'}
-                onClick={() => setActive('completed')}
-              >
-                Completed
-              </Button>
+              {buttons.map((button) => (
+                <Button
+                  key={button.value}
+                  isActive={active === button.value}
+                  onClick={() => setActive(button.value)}
+                >
+                  {button.label}
+                </Button>
+              ))}
             </div>
           </div>
 
@@ -127,7 +125,6 @@ function App() {
             >
               <FontAwesomeIcon icon={faMagnifyingGlass} /> Search
             </Button>
-
             <Input
               placeholder={
                 mode === 'search'
